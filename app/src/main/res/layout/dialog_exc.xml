@@ -4,27 +4,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/ll_send_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="检测到该账号下已绑定以下设备，如要更换设备请选择换绑设备（每月只能换绑一次），审核通过后，之前设备无急速扫描功能（审核周期3-7工作日，原因请认真填写，谨慎提交）"
-        android:textColor="@color/red"
-        android:textSize="16sp" />
-
-    <RadioGroup
-        android:id="@+id/radio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="vertical">
 
-    </RadioGroup>
 
-    <EditText
-        android:id="@+id/et_reason"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="换绑原因,一个月只能换绑一次" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="检测到该账号下已绑定以下设备，如要更换设备请选择换绑设备（每月只能换绑一次），审核通过后，之前设备无急速扫描功能（审核周期3-7工作日，原因请认真填写，谨慎提交）"
+            android:textColor="@color/red"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:id="@+id/radio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/et_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="换绑原因,一个月只能换绑一次" />
+
+        <EditText
+            android:id="@+id/et_ower_tel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="账号主人手机号码"
+            android:inputType="phone" />
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="换绑" />
+            android:text="换绑(获取验证码)" />
 
         <Button
             android:id="@+id/add"
@@ -45,5 +62,27 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="添加此设备到账号下" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/et_code"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="填写验证码"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btn_vercode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提交验证码" />
     </LinearLayout>
 </LinearLayout>

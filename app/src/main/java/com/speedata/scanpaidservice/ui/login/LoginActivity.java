@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,7 @@ import com.speedata.scanpaidservice.mvp.MVPBaseActivity;
 import com.speedata.scanpaidservice.ui.main.MainActivity;
 import com.speedata.scanpaidservice.ui.pay.PayActivity;
 import com.speedata.scanpaidservice.utils.DataCleanManager;
+import com.speedata.scanpaidservice.utils.DateUtils;
 import com.speedata.scanpaidservice.utils.SharedXmlUtil;
 import com.speedata.scanservice.bean.member2.GetMember2DataBean;
 import com.yanzhenjie.permission.AndPermission;
@@ -147,6 +149,14 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
     public void openAct(int expireStatus, String expireDate) {
         if (kProgressHUD != null) {
             kProgressHUD.dismiss();
+        }
+        if (!TextUtils.isEmpty(expireDate)){
+            String timeByHour = DateUtils.getTimeByHour(48, DateUtils.FORMAT_YMD);
+            Long aLong = DateUtils.convertTimeToLong(DateUtils.FORMAT_YMD, expireDate);
+            Long time = DateUtils.convertTimeToLong(DateUtils.FORMAT_YMD, timeByHour);
+            if (time > aLong) {
+                Toast.makeText(mActivity, "注意！会员将在" + expireDate + "到期", Toast.LENGTH_SHORT).show();
+            }
         }
         Intent intent = new Intent();
         intent.setClass(getApplicationContext(), MainActivity.class);
